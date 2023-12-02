@@ -5,6 +5,7 @@ import net.thucydides.core.annotations.Step;
 import org.json.JSONObject;
 
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
+import static org.hamcrest.Matchers.equalTo;
 
 
 public class Auth {
@@ -67,6 +68,14 @@ public class Auth {
                 .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJGdWxsbmFtZSI6IkFuZHJlYW4iLCJFbWFpbCI6ImRvaGM5MDkwQGdtYWlsLmNvbSJ9.zqsZ7AVEey4afO657sxkS8vr7Mik4xnpKUgmFZAoULE")
                 .get(setUserInfoEndpoint());
     }
+
+
+//    Validate response body
+//    @Step("I receive valid data for detail user")
+//    public void validateDataDetailUser(){
+//        restAssuredThat(response -> response.body("'data'.'id'", equalTo(2)));
+//        restAssuredThat(response -> response.body("'data'.'first_name'", equalTo("Janet")));
+//    }
 
 
 }
