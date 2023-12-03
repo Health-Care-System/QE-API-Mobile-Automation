@@ -24,6 +24,7 @@ Feature: Register and Login
     Then I receive HTTP response status code 409 Conflict
     And I receive valid message that Email Already Exist
 
+
   @Login-009
   Scenario: Verify send POST request to login user endpoint with valid email, and password
     Given I set login user API endpoint

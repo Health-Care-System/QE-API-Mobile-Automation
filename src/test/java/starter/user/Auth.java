@@ -10,25 +10,37 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Auth {
 
-    protected String url = "https://altashop-api.fly.dev/api";
+    protected String url = "";
 
-    @Step("I set register API endpoint")
-    public String setRegisterEndpoint(){
-        return url + "/auth/register";
+    private int emailCounter = 5;
+
+
+//    Scenario: Verify send POST request to register user endpoint with valid full name, email, password
+    @Step("I set register user API endpoint")
+    public String setRegisterUserEndpoint(){
+        return url + "/users/register";
     }
 
-    @Step("I send POST HTTP request for register")
+    @Step("I send POST HTTP request for register with valid request body")
     public void sendPostRegister(){
         JSONObject requestBody = new JSONObject();
 
-        requestBody.put("email", "dohc964563498@gmail.com");
-        requestBody.put("password", "abcde");
-        requestBody.put("fullname", "Andre");
+//        requestBody.put("fullname", "Fernand Andrean");
+//        requestBody.put("email", "user5@gmail.com");
+//        requestBody.put("password", "a1234567890");
+
+        String email = "user" + emailCounter + "@gmail.com";
+        emailCounter++; // Inkrementasi counter
+
+        requestBody.put("fullname", "Fernand Andrean");
+        requestBody.put("email", email);
+        requestBody.put("password", "a1234567890");
+
 
         SerenityRest.given()
                 .header("Content-Type","application/json")
                 .body(requestBody.toString())
-                .post(setRegisterEndpoint());
+                .post(setRegisterUserEndpoint());
     }
 
     @Step("I receive HTTP response status code 200 OK")
@@ -36,38 +48,168 @@ public class Auth {
         restAssuredThat(response -> response.statusCode(200));
     }
 
-    @Step("I set login API endpoint")
-    public String setLoginEndpoint(){
-        return url + "/auth/login";
+    @Step("I receive valid message that Registered Successful")
+        public void validateMessageSuccessRegister(){
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("registered successful")));
+//        restAssuredThat(response -> response.body("'data'.'first_name'", equalTo("Janet")));
     }
 
-    @Step("I send POST HTTP request for login")
-    public void sendPostLogin(){
+//    Scenario: Verify send POST request to register user endpoint with invalid email format (without "@")
+    @Step("I send POST HTTP request for register with invalid email format")
+    public void sendPostRegisterInvalidEmail(){
         JSONObject requestBody = new JSONObject();
 
-        requestBody.put("email", "dohc3297@gmail.com");
-        requestBody.put("password", "abcde");
+        requestBody.put("fullname", "Fernand Andrean");
+        requestBody.put("email", "salahgmail.com");
+        requestBody.put("password", "a1234567890");
 
         SerenityRest.given()
                 .header("Content-Type","application/json")
                 .body(requestBody.toString())
-                .post(setLoginEndpoint());
+                .post(setRegisterUserEndpoint());
+    }
+    @Step("Then I receive HTTP response status code 400 Bad Request")
+    public void receiveResponseStatusCode400BadRequest(){
+        restAssuredThat(response -> response.statusCode(400));
     }
 
-//    @Then("I receive login token")
-
-    @Step("I set user information API endpoint")
-    public String setUserInfoEndpoint(){
-        return url + "/auth/info";
+    @Step("And I receive valid message that Failed on Email Validation")
+    public void validateMessageRegisterWithInvalidEmailFormat() {
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("Field 'Email' failed on 'email' validation")));
     }
 
-    @Step("I send GET HTTP request for user information")
-    public void sendGetUserInfo(){
+
+//    Scenario: Verify send POST request to register user endpoint by using the registered email
+    @Step("I send POST HTTP request for register with registered email")
+    public void sendPostRegisteredEmail(){
+        JSONObject requestBody = new JSONObject();
+
+        requestBody.put("fullname", "Fernand Andrean");
+        requestBody.put("email", "user5@gmail.com");
+        requestBody.put("password", "a1234567890");
+
+        SerenityRest.given()
+                .header("Content-Type","application/json")
+                .body(requestBody.toString())
+                .post(setRegisterUserEndpoint());
+    }
+
+    @Step("I receive HTTP response status code 409 Conflict")
+    public void receiveResponseStatusCode409Conflict(){
+        restAssuredThat(response -> response.statusCode(409));
+    }
+
+    @Step("I receive valid message that Email Already Exist")
+    public void validateMessageRegisteedEmail() {
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("email already exist")));
+    }
+
+
+
+//    Scenario: Verify send POST request to login user endpoint with valid email, and password
+    @Step("I set login user API endpoint")
+    public String setLoginUserEndpoint(){
+        return url + "/users/login";
+    }
+    @Step("I send POST HTTP request for login with valid request body")
+    public void sendPostLoginValid(){
+        JSONObject requestBody = new JSONObject();
+
+        requestBody.put("email", "user5@gmail.com");
+        requestBody.put("password", "a1234567890");
+
+        SerenityRest.given()
+                .header("Content-Type","application/json")
+                .body(requestBody.toString())
+                .post(setLoginUserEndpoint());
+    }
+
+    @Step("I receive valid message that Login Successfull")
+    public void validateMessageValidLogin(){
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("login successful")));
+    }
+
+
+
+//    Scenario: Verify send POST request to login user endpoint with unregistered email and valid password
+    @Step("I send POST HTTP request for login with unregistered email")
+    public void sendPostLoginUnregisteredEmail(){
+        JSONObject requestBody = new JSONObject();
+
+        requestBody.put("email", "unregistered@gmail.com");
+        requestBody.put("password", "a1234567890");
+
+        SerenityRest.given()
+                .header("Content-Type","application/json")
+                .body(requestBody.toString())
+                .post(setLoginUserEndpoint());
+    }
+
+    @Step("I receive HTTP response status code 401 Unauthorized")
+    public void receiveResponseStatusCode401Unauthorized(){
+        restAssuredThat(response -> response.statusCode(401));
+    }
+
+    @Step("I receive valid message that Email Not Registered")
+    public void validateMessageLoginUnregisteredEmail(){
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("email not registered")));
+    }
+
+
+//    Scenario: Verify send POST request to login user endpoint with invalid email (without "@") and valid password
+    @Step("I send POST HTTP request for login with invalid email format")
+    public void sendPostLoginInvalidEmailFormat(){
+        JSONObject requestBody = new JSONObject();
+
+        requestBody.put("email", "user5gmail.com");
+        requestBody.put("password", "a1234567890");
+
+        SerenityRest.given()
+                .header("Content-Type","application/json")
+                .body(requestBody.toString())
+                .post(setLoginUserEndpoint());
+    }
+
+
+
+//    Scenario: Verify send DELETE request to delete user endpoint with valid login token
+    @Step("I set delete user API endpoint")
+    public String setDeleteUserEndpoint(){
+        return url + "/users";
+    }
+
+    @Step("I send DELETE HTTP request for delete user with valid login token")
+    public void sendDeleteUserValidToken(){
         SerenityRest
                 .given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJGdWxsbmFtZSI6IkFuZHJlYW4iLCJFbWFpbCI6ImRvaGM5MDkwQGdtYWlsLmNvbSJ9.zqsZ7AVEey4afO657sxkS8vr7Mik4xnpKUgmFZAoULE")
-                .get(setUserInfoEndpoint());
+                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI1QGdtYWlsLmNvbSIsImV4cCI6MTcwMTg4NDUyNiwiaWQiOjksInJvbGUiOiJ1c2VyIn0.Yecse8OlHtaSBw2fiM083GaUrOgFwferNwKxvbEFChU")
+                .delete(setDeleteUserEndpoint());
     }
+
+    @Step("I receive valid message that User Deleted Data Successful")
+    public void validateMessageSuccessDeleteUser(){
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("User Deleted Data Successfully")));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    Validate response body
