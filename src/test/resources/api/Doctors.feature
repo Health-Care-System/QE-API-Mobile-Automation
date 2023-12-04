@@ -35,5 +35,5 @@ Feature: Doctors
   @GetDoctorsBySpecialization-060
   Scenario: Verify send POST request to get all doctors based on specialization endpoint
     Given I set get doctors by specialization API endpoint with valid specialization name
-    When I send GET HTTP request for get all available doctors by valid specialization name
+    When I send POST HTTP request for get all available doctors by valid specialization name
     Then I receive HTTP response status code 405 Method Not Allowed
