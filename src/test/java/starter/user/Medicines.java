@@ -13,7 +13,7 @@ public class Medicines {
 //    Scenario: Verify send GET request to get all medicines endpoint
     @Step("I set get all medicines API endpoint")
     public String setGetAllMedicines(){
-        return url + "/users/medicines";
+        return url + "/users/medicines?offset=0&limit=3";
     }
 
     @Step("I send GET HTTP request for get all medicines")
@@ -43,7 +43,7 @@ public class Medicines {
 //    Scenario: Verify send GET request to get medicines by name endpoint with valid name
     @Step("I set get medicine by name API endpoint with valid name")
     public String setValidGetMedicineByName(){
-        return url + "/users/medicines?name=Paracetamol";
+        return url + "/users/medicines?offset=0&limit=3&?name=Paracetamol";
     }
 
     @Step("I send GET HTTP request for get medicine by name")
@@ -55,7 +55,7 @@ public class Medicines {
 //    Scenario: Verify send GET request to get medicines by name endpoint with invalid name
     @Step("I set get medicine by name API endpoint with invalid name")
     public String setGetMedicineByInvalidName(){
-        return url + "/users/medicines?name=12345";
+        return url + "/users/medicines?offset=0&limit=3&?name=12345";
     }
 
     @Step("I send GET HTTP request for get medicine by invalid name")
