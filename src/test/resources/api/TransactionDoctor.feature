@@ -13,21 +13,21 @@ Feature: Transaction Doctor
   @CreateTransactionDoctor-062
   Scenario: Verify send POST request to create doctor transaction endpoint with invalid doctor ID
     Given I set create doctor transaction API endpoint with invalid doctor ID
-    When I send POST HTTP request for create doctor transaction with valid request body
+    When I send POST HTTP request for create doctor transaction to invalid doctor ID endpoint
     Then I receive HTTP response status code 400 Bad Request
     And I receive valid message that invalid doctor id
 
   @CreateTransactionDoctor-063
   Scenario: Verify send POST request to create doctor transaction with non existing doctor ID
     Given I set create doctor transaction API endpoint with non existing doctor ID
-    When I send POST HTTP request for create doctor transaction with valid request body
+    When I send POST HTTP request for create doctor transaction to non exist doctor ID
     Then I receive HTTP response status code 500 Internal Server Error
     And I receive valid message that doctor failed to retrieve doctor data
 
   @CreateTransactionDoctor-064
   Scenario: Verify send POST request to create doctor transaction with empty doctor ID
     Given I set create doctor transaction API endpoint with empty doctor ID
-    When I send POST HTTP request for create doctor transaction with valid request body
+    When I send POST HTTP request for create doctor transaction to empty doctor ID
     Then I receive HTTP response status code 405 Method Not Allowed
 
   @CreateTransactionDoctor-065
@@ -41,7 +41,7 @@ Feature: Transaction Doctor
   Scenario: Verify send POST request to create doctor transaction with invalid payment method
     Given I set create doctor transaction API endpoint with valid doctor ID
     When I send POST HTTP request for create doctor transaction with invalid payment method
-    Then I receive HTTP response status code 500 Internal Server Error
+    Then I receive HTTP response status code 400 Bad Request
     And I receive valid message that failed to create doctor transaction
 
   @CreateTransactionDoctor-067
