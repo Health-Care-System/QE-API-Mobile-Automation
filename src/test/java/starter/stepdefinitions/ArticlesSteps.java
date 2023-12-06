@@ -25,7 +25,7 @@ public class ArticlesSteps {
         articles.sendValidGetAllHealthArticles();
     }
 
-    @And("I receive valid message that successfully get data article")
+    @And("I receive valid message that successfully get data articles")
     public void receiveMessageSuccessfullyGetDataArticle(){
         articles.validateMessageSuccessGetAllHealthArticles();
     }
@@ -109,6 +109,11 @@ public class ArticlesSteps {
         articles.sendValidGetArticleByTittle();
     }
 
+    @And("I receive valid message that successfully get data article")
+    public void receiveMessageSuccessfullyGetDataArticleWithValidTitle(){
+        articles.validateMessageSuccessGetAllHealthArticleByValidTitle();
+    }
+
 
 //    Scenario: Verify send GET request to get health article by ID endpoint with invalid article title
     @Given("I set get health article by title API endpoint with invalid title")
@@ -123,6 +128,17 @@ public class ArticlesSteps {
 
 
     //    Scenario: Verify send GET request to get health article by ID endpoint with empty parameter
+    @Given("I set get health article by title API endpoint with empty title parameter")
+    public void setValidGetArticleWithEmptyParam(){
+        articles.setGetHealthArticleWithEmptyTitleParam();
+    }
+
+    @When("I send GET HTTP request for get health article with empty title parameter")
+    public void successSendGetHealthArticleWithEmptyParamTitle(){
+        articles.sendGetHealthArticleWithEmptyTitleParam();
+    }
+
+
     @And("I receive valid message that title query param required")
     public void receiveMessageTitleQueryParamRequired(){
         articles.validateMessageEmptyTitle();

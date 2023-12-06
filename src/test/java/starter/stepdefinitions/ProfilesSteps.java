@@ -33,16 +33,16 @@ public class ProfilesSteps {
     public void setValidUpdateProfileEndpoint(){
         profiles.setValidUpdateUser();
     }
-//
-//    @When("I send PUT HTTP request for update user profile with valid request body")
-//    public void successSendValidPutRequestUpdateProfile(){
-//        profiles.sendPutRequestToUpdateProfileWithValidData();
-//    }
-//
-//    @And("I receive valid message that User Updated Data Successful")
-//    public void receiveMessageUserUpdatedDataSuccessful(){
-//        profiles.validateMessageSuccessUpdateProfile();
-//    }
+
+    @When("I send PUT HTTP request for update user profile with valid request body")
+    public void successSendValidPutRequestUpdateProfile(){
+        profiles.sendPutRequestToUpdateProfileWithValidData();
+    }
+
+    @And("I receive valid message that User Updated Data Successful")
+    public void receiveMessageUserUpdatedDataSuccessful(){
+        profiles.validateMessageSuccessUpdateProfile();
+    }
 
 
 

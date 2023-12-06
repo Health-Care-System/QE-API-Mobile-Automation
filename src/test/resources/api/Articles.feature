@@ -9,7 +9,7 @@ Feature: Articles
     Given I set get all health articles API endpoint
     When I send GET HTTP request for get all health articles
     Then I receive HTTP response status code 200 OK
-    And I receive valid message that successfully get data article
+    And I receive valid message that successfully get data articles
 
   @GetAllHealthArticles-036
   Scenario: Verify send POST request to get all health articles endpoint
@@ -63,8 +63,8 @@ Feature: Articles
 
   @GetHealthArticlesByTitle-043
   Scenario: Verify send GET request to get health article by ID endpoint with empty parameter
-    Given I set get health article by title API endpoint with valid title
-    When I send GET HTTP request for get health article by valid title
+    Given I set get health article by title API endpoint with empty title parameter
+    When I send GET HTTP request for get health article with empty title parameter
     Then I receive HTTP response status code 400 Bad Request
     And I receive valid message that title query param required
 

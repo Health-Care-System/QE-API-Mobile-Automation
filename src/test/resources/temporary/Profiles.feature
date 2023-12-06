@@ -10,12 +10,12 @@ Feature: Profiles
 #    Then I receive HTTP response status code 200 OK
 #    And I receive valid message that Login Successfull
 
-#  @UpdateProfile-045
-#  Scenario: Verify send PUT request to update user with valid full name, email, password, image url, gender, birthdate, blood type, height, and weight
-#    Given I set update user profile API endpoint
-#    When I send PUT HTTP request for update user profile with valid request body
-#    Then I receive HTTP response status code 200 OK
-#    And I receive valid message that User Updated Data Successful
+  @UpdateProfile-045
+  Scenario: Verify send PUT request to update user with valid full name, email, password, image url, gender, birthdate, blood type, height, and weight
+    Given I set update user profile API endpoint
+    When I send PUT HTTP request for update user profile with valid request body
+    Then I receive HTTP response status code 200 OK
+    And I receive valid message that User Updated Data Successful
 
   @UpdateProfile-046
   Scenario: Verify send PUT request to update user with invalid email format (without "@")
