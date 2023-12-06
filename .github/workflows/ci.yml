@@ -24,7 +24,7 @@ jobs:
 #        run: mvn --batch-mode --update-snapshots verify
 
   test:
-    name: coba
+    name: Automation Test Profiles Feature V2
     needs: build
     runs-on: ubuntu-latest
     steps:
