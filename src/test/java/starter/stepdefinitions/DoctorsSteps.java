@@ -50,10 +50,10 @@ public class DoctorsSteps {
         doctors.sendValidGetDoctorBySpecialization();
     }
 
-    @And("I receive valid message that data successfully retrieved")
-    public void receiveMessageSuccessGetDoctorBySpecialization(){
-        doctors.validateMessageGetDoctorBySpecialization();
-    }
+//    @And("I receive valid message that data successfully retrieved")
+//    public void receiveMessageSuccessGetDoctorBySpecialization(){
+//        doctors.validateMessageGetDoctorBySpecialization();
+//    }
 
 
 //    Scenario: Verify send GET request to get all doctors based on specialization endpoint with invalid specialization name

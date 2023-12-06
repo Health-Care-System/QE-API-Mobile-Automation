@@ -24,7 +24,7 @@ jobs:
 #        run: mvn --batch-mode --update-snapshots verify
 
   test:
-    name: Automation Test Medicines Feature V1
+    name: Automation Test Doctors Feature V1
     needs: build
     runs-on: ubuntu-latest
     steps:

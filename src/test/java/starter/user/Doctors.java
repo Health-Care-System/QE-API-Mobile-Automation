@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Doctors {
 
-    protected String url = "";
+    protected String url = "https://www.healthify.my.id";
 
 
 //    Scenario: Verify send GET request to get all available doctors endpoint
@@ -26,7 +26,7 @@ public class Doctors {
 
     @Step("I receive valid message that Data Dokter Berhasil Diambil")
     public void validateMessageGetAllAvailableDoctors(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("data successfully retrieved")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("successfully get data doctors")));
     }
 
 
@@ -40,7 +40,7 @@ public class Doctors {
 //    Scenario: Verify send GET request to get all doctors based on specialization endpoint
     @Step("I set get doctors by specialization API endpoint with valid specialization name")
     public String setValidGetDoctorBySpecialization(){
-        return url + "/users/doctors?specialist=gigi&offset=0&limit=3";
+        return url + "/users/doctors?specialist=bedah&offset=0&limit=3";
     }
 
     @Step("I send GET HTTP request for get all available doctors by valid specialization name")
@@ -48,10 +48,10 @@ public class Doctors {
         SerenityRest.given().get(setValidGetDoctorBySpecialization());
     }
 
-    @Step("I receive valid message that data successfully retrieved")
-    public void validateMessageGetDoctorBySpecialization(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("data successfully retrieved")));
-    }
+//    @Step("I receive valid message that data successfully retrieved")
+//    public void validateMessageGetDoctorBySpecialization(){
+//        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("data successfully retrieved")));
+//    }
 
 
 //    Scenario: Verify send GET request to get all doctors based on specialization endpoint with invalid specialization name
@@ -67,7 +67,7 @@ public class Doctors {
 
     @Step("I receive valid message that data not found")
     public void validateMessageGetDoctorByInvalidSpecialization(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("data not found")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("not found")));
     }
 
 

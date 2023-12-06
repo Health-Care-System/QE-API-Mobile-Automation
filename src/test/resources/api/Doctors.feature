@@ -23,7 +23,8 @@ Feature: Doctors
     Given I set get doctors by specialization API endpoint with valid specialization name
     When I send GET HTTP request for get all available doctors by valid specialization name
     Then I receive HTTP response status code 200 OK
-    And I receive valid message that data successfully retrieved
+#    And I receive valid message that data successfully retrieved
+    And I receive valid message that Data Dokter Berhasil Diambil
 
   @GetDoctorsBySpecialization-059
   Scenario: Verify send GET request to get all doctors based on specialization endpoint with invalid specialization name
