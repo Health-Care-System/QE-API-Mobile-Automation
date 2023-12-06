@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Chatbots {
 
-    protected String url = "";
+    protected String url = "https://www.healthify.my.id";
 
 
 //    Scenario: Verify send POST request to chatbot endpoint with valid request (Cara Pembayaran Obat)

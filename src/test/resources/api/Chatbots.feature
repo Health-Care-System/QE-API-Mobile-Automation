@@ -44,6 +44,8 @@ Feature: Chatbots
     Given I set chat bot API endpoint
     When I send POST HTTP request for chat bot with the request is asking for medicine prescription
     Then I receive HTTP response status code 400 Bad Request
+#    Then I receive HTTP response status code 200 OK
+
 
   @Chatbots-025
   Scenario: Verify send GET request to chatbot endpoint with valid request
