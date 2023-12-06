@@ -23,11 +23,11 @@ jobs:
         run: mvn test
 #        run: mvn --batch-mode --update-snapshots verify
 
-#  test:
-#    name: Capstone Project
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#      - name: Just test
-#        run: mvn clean verify
+  test:
+    name: Capstone Project
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Automation Auth
+        run: mvn clean verify
