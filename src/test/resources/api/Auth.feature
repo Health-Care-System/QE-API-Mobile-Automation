@@ -7,7 +7,7 @@ Feature: Register and Login
   Scenario: Verify send POST request to register user endpoint with valid full name, email, password
     Given I set register user API endpoint
     When I send POST HTTP request for register with valid request body
-    Then I receive HTTP response status code 200 OK
+    Then I receive HTTP response status code 201 Created
     And I receive valid message that Registered Successful
 
   @Register-005

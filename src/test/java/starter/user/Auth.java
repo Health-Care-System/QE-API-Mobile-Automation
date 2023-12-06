@@ -1,18 +1,22 @@
 package starter.user;
 
+import io.restassured.response.Response;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import org.json.JSONObject;
 
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
 import static org.hamcrest.Matchers.equalTo;
+import java.util.UUID;
 
 
 public class Auth {
 
-    protected String url = "";
+    protected String url = "https://www.healthify.my.id";
 
-    private int emailCounter = 5;
+//    private int emailCounter = 515;
+
+    public static String authToken;
 
 
 //    Scenario: Verify send POST request to register user endpoint with valid full name, email, password
@@ -29,8 +33,8 @@ public class Auth {
 //        requestBody.put("email", "user5@gmail.com");
 //        requestBody.put("password", "a1234567890");
 
-        String email = "user" + emailCounter + "@gmail.com";
-        emailCounter++; // Inkrementasi counter
+        String email = "user" + UUID.randomUUID().toString() + "@gmail.com";
+
 
         requestBody.put("fullname", "Fernand Andrean");
         requestBody.put("email", email);
@@ -41,6 +45,8 @@ public class Auth {
                 .header("Content-Type","application/json")
                 .body(requestBody.toString())
                 .post(setRegisterUserEndpoint());
+
+//        emailCounter++;
     }
 
     @Step("I receive HTTP response status code 200 OK")
@@ -85,7 +91,7 @@ public class Auth {
         JSONObject requestBody = new JSONObject();
 
         requestBody.put("fullname", "Fernand Andrean");
-        requestBody.put("email", "user5@gmail.com");
+        requestBody.put("email", "registereduser@gmail.com");
         requestBody.put("password", "a1234567890");
 
         SerenityRest.given()
@@ -122,6 +128,9 @@ public class Auth {
                 .header("Content-Type","application/json")
                 .body(requestBody.toString())
                 .post(setLoginUserEndpoint());
+
+        Response response = SerenityRest.lastResponse();
+        authToken = response.path("results.token");
     }
 
     @Step("I receive valid message that Login Successfull")
@@ -182,31 +191,25 @@ public class Auth {
     public void sendDeleteUserValidToken(){
         SerenityRest
                 .given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI1QGdtYWlsLmNvbSIsImV4cCI6MTcwMTg4NDUyNiwiaWQiOjksInJvbGUiOiJ1c2VyIn0.Yecse8OlHtaSBw2fiM083GaUrOgFwferNwKxvbEFChU")
+                .header("Authorization", "Bearer " + authToken)
                 .delete(setDeleteUserEndpoint());
     }
 
     @Step("I receive valid message that User Deleted Data Successful")
     public void validateMessageSuccessDeleteUser(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("User Deleted Data Successfully")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("user deleted data successful")));
+
+        JSONObject requestBody = new JSONObject();
+
+        requestBody.put("fullname", "Fernand Andrean");
+        requestBody.put("email", "user5@gmail.com");
+        requestBody.put("password", "a1234567890");
+        SerenityRest.given()
+                .header("Content-Type","application/json")
+                .body(requestBody.toString())
+                .post(setRegisterUserEndpoint());
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
