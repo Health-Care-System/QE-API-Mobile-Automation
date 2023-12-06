@@ -44,21 +44,21 @@ Feature: Medicines
     Given I set get medicine by ID API endpoint with valid ID
     When I send GET HTTP request for get medicine by ID
     Then I receive HTTP response status code 200 OK
-    And I receive valid message that Medicines Data Successfully Retrieved
+    And I receive valid message that Medicine Data Successfully Retrieved
 
   @GetMedicineByID-032
   Scenario: Verify send GET request to get medicine by ID endpoint with invalid medicine ID
     Given I set get medicine by invalid ID API endpoint with invalid ID
     When I send GET HTTP request for get medicine by invalid ID
-    Then I receive HTTP response status code 200 OK
+    Then I receive HTTP response status code 400 Bad Request
     And I receive valid message that Invalid Medicine ID
 
   @GetMedicineByID-033
   Scenario: Verify send GET request to get medicine by ID endpoint with non existing medicine ID
     Given I set get medicine by invalid ID API endpoint with non existing ID
     When I send GET HTTP request for get medicine by non existing ID
-    Then I receive HTTP response status code 500 Internal Server Error
-    And I receive valid message that Failed to Retrieve Medicine Data
+    Then I receive HTTP response status code 404 Not Found
+    And I receive valid message that not found
 
   @GetMedicineByID-034
   Scenario: Verify send POST request to get medicine by ID endpoint with valid medicineID

@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Medicines {
 
-    protected String url = "";
+    protected String url = "https://www.healthify.my.id";
 
 //    Scenario: Verify send GET request to get all medicines endpoint
     @Step("I set get all medicines API endpoint")
@@ -23,7 +23,7 @@ public class Medicines {
 
     @Step("I receive valid message that Medicines Data Successfully Retrieved")
     public void receiveMessageSuccessGetAllMedicines(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("medicines data successfully retrieved")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("successfully get data medicines")));
     }
 
 
@@ -43,7 +43,7 @@ public class Medicines {
 //    Scenario: Verify send GET request to get medicines by name endpoint with valid name
     @Step("I set get medicine by name API endpoint with valid name")
     public String setValidGetMedicineByName(){
-        return url + "/users/medicines?offset=0&limit=3&?name=Paracetamol";
+        return url + "/users/medicines?offset=0&limit=3&name=Bodrex";
     }
 
     @Step("I send GET HTTP request for get medicine by name")
@@ -55,7 +55,7 @@ public class Medicines {
 //    Scenario: Verify send GET request to get medicines by name endpoint with invalid name
     @Step("I set get medicine by name API endpoint with invalid name")
     public String setGetMedicineByInvalidName(){
-        return url + "/users/medicines?offset=0&limit=3&?name=12345";
+        return url + "/users/medicines?offset=0&limit=3&name=12345";
     }
 
     @Step("I send GET HTTP request for get medicine by invalid name")
@@ -70,7 +70,7 @@ public class Medicines {
 
     @Step("I receive valid message that Medicine Not Found")
     public void validateMessageGetMedicineByInvalidName(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("medicine not found")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("medicines not found")));
     }
 
 
@@ -92,6 +92,11 @@ public class Medicines {
         SerenityRest.given().get(setValidGetMedicineByID());
     }
 
+    @Step("I receive valid message that Medicine Data Successfully Retrieved")
+    public void validateMessageValidGetMedByID(){
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("successfully get data medicine")));
+    }
+
 
 
 //    Scenario: Verify send GET request to get medicine by ID endpoint with invalid medicine ID
@@ -107,7 +112,7 @@ public class Medicines {
 
     @Step("I receive valid message that Invalid Medicine ID")
     public void validateMessageGetMedicineByInvalidID(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("invalid medicine id")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("invalid id param")));
     }
 
 

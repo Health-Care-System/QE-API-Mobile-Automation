@@ -94,6 +94,11 @@ public class MedicinesSteps {
         medicines.sendValidGetMedicineByID();
     }
 
+    @And("I receive valid message that Medicine Data Successfully Retrieved")
+    public void receiveMessageValidGetMedByID(){
+        medicines.validateMessageValidGetMedByID();
+    }
+
 
 
     //    Scenario: Verify send GET request to get medicine by ID endpoint with invalid medicine ID
