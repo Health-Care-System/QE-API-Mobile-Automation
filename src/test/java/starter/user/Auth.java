@@ -16,7 +16,7 @@ public class Auth {
 
 //    private int emailCounter = 515;
 
-    public static String authToken;
+    private static String authToken;
 
 
 //    Scenario: Verify send POST request to register user endpoint with valid full name, email, password

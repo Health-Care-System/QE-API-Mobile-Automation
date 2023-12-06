@@ -5,12 +5,28 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
+import starter.user.Auth;
 import starter.user.Profiles;
 
 public class ProfilesSteps {
 
     @Steps
     Profiles profiles;
+
+//    @Steps
+//    Auth auth;
+//
+//    //    Login First
+//
+//    @Given("I set login user API endpoint before update")
+//    public void setValidLoginFirstEndpoint(){
+//        profiles.setValidLoginBeforeUpdate();
+//    }
+//
+//    @When("I send POST HTTP request for login with valid request body before update profiles")
+//    public void successSendPostLoginFirst(){
+//        profiles.sendPostLoginValidBeforeUpdateProfile();
+//    }
 
 //    Scenario: Verify send PUT request to update user with valid full name, email, password, image url, gender, birthdate, blood type, height, and weight
     @Given("I set update user profile API endpoint")

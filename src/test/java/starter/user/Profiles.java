@@ -1,34 +1,67 @@
 package starter.user;
 
+import io.restassured.response.Response;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.UUID;
 
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
 public class Profiles {
+//    private static String authToken;
 
-    protected String url = "";
+    protected String url = "https://www.healthify.my.id";
+
+//    Login First
+//    @Step("I set login user API endpoint before update")
+//    public String setValidLoginBeforeUpdate(){
+//        return url = "/users/login";
+//    }
+//
+//    @Step("I send POST HTTP request for login with valid request body before update profiles")
+//    public void sendPostLoginValidBeforeUpdateProfile(){
+//        JSONObject requestBody = new JSONObject();
+//
+//        requestBody.put("email", "user2002@gmail.com");
+//        requestBody.put("password", "a1234567890");
+//
+//        SerenityRest.given()
+//                .header("Content-Type","application/json")
+//                .body(requestBody.toString())
+//                .post(setValidLoginBeforeUpdate());
+//
+//        Response response = SerenityRest.lastResponse();
+//        authToken = response.path("results.token");
+//    }
+
+    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjFAZ21haWwuY29tIiwiZXhwIjoxNzAyMTI1MTk5LCJpZCI6NTMsInJvbGUiOiJ1c2VyIn0.-umhmxymWwrCGLgXJIdSVl95QPrXgJ-iC7rH9GaxURU";
+
+
+
 //    Scenario: Verify send PUT request to update user with valid full name, email, password, image url, gender, birthdate, blood type, height, and weight
     @Step("I set update user profile API endpoint")
     public String setValidUpdateUser(){
-        return url + "users/profile";
+        return url + "/users/profile";
     }
 
     @Step("I send PUT HTTP request for update user profile with valid request body")
     public void sendPutRequestToUpdateProfileWithValidData(){
 
-        File imageFile = new File("\"E:\\!SIB\\!capstone-project\\API_Mobile_Automation\\src\\test\\java\\starter\\user\\emojipng.com-1738931.png\"");  // Ganti dengan path file gambar yang sesuai
+        File imageFile = new File("E:\\!SIB\\!capstone-project\\API_Mobile_Automation\\src\\test\\java\\starter\\user\\emojipng.com-1738931.png");  // Ganti dengan path file gambar yang sesuai
+
+        String randomEmail = "user" + UUID.randomUUID().toString() + "@gmail.com";
 
         SerenityRest.given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI2QGdtYWlsLmNvbSIsImV4cCI6MTcwMTkzNjc1MywiaWQiOjEzLCJyb2xlIjoidXNlciJ9.1g4i0lByTwCoU2heQcKp2fYNgxxopTrl_fhvCGHvBlk")
+                .header("Authorization", tokenLoginUser)
                 .formParams("fullname", "Hanisah Fildza Annafisah")
-                .formParams("email", "user5@gmail.com")
+                .formParams("email", randomEmail)
                 .formParams("password", "a1234567890")
-                .multiPart("profile_picture", imageFile, "image/jpeg")  // Menambahkan form parameter untuk upload foto profil
+                .multiPart("profile_picture", imageFile, "image/jpeg")
                 .formParams("gender", "female")
                 .formParams("birthdate", "1999-09-30")
                 .formParams("blood_type", "A")
@@ -48,7 +81,7 @@ public class Profiles {
     public void sendPutUpdateUserWithInvalidEmailFormat(){
 
         SerenityRest.given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI2QGdtYWlsLmNvbSIsImV4cCI6MTcwMTkzNjc1MywiaWQiOjEzLCJyb2xlIjoidXNlciJ9.1g4i0lByTwCoU2heQcKp2fYNgxxopTrl_fhvCGHvBlk")
+                .header("Authorization", tokenLoginUser)
                 .formParams("email", "user5gmail.com")
                 .put(setValidUpdateUser());
     }
@@ -57,16 +90,10 @@ public class Profiles {
 //    Scenario: Verify send PUT request to update user with name  is exceeding the limit (30)
     @Step("I send PUT HTTP request for update user profile with the name is exceed")
     public void sendPutUpdateProfileWithExceedName(){
-        StringBuilder fullnameBuilder = new StringBuilder();
-        for (int i = 0; i < 30; i++) {
-            fullnameBuilder.append("a");
-        }
-
-        String fullname = fullnameBuilder.toString();
 
         SerenityRest.given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI2QGdtYWlsLmNvbSIsImV4cCI6MTcwMTkzNjc1MywiaWQiOjEzLCJyb2xlIjoidXNlciJ9.1g4i0lByTwCoU2heQcKp2fYNgxxopTrl_fhvCGHvBlk")
-                .formParams("fullname", fullname)
+                .header("Authorization", tokenLoginUser)
+                .formParams("fullname", "Hanisah Fildza Annafisah Annafi")
                 .put(setValidUpdateUser());
     }
 
@@ -81,8 +108,8 @@ public class Profiles {
     @Step("I send PUT HTTP request for update user profile with invalid gender")
     public void sendPutUpdateProfileWithInvalidGender(){
         SerenityRest.given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI2QGdtYWlsLmNvbSIsImV4cCI6MTcwMTkzNjc1MywiaWQiOjEzLCJyb2xlIjoidXNlciJ9.1g4i0lByTwCoU2heQcKp2fYNgxxopTrl_fhvCGHvBlk")
-                .formParams("gender", "female")
+                .header("Authorization", tokenLoginUser)
+                .multiPart("gender", "habah")
                 .put(setValidUpdateUser());
     }
 
@@ -97,8 +124,8 @@ public class Profiles {
     @Step("I send PUT HTTP request for update user profile with invalid blood type")
     public void sendPutUpdateProfileWithInvalidBloodType(){
         SerenityRest.given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI2QGdtYWlsLmNvbSIsImV4cCI6MTcwMTkzNjc1MywiaWQiOjEzLCJyb2xlIjoidXNlciJ9.1g4i0lByTwCoU2heQcKp2fYNgxxopTrl_fhvCGHvBlk")
-                .formParams("blood_type", "A")
+                .header("Authorization", tokenLoginUser)
+                .multiPart("blood_type", "SSS")
                 .put(setValidUpdateUser());
     }
 
@@ -112,14 +139,14 @@ public class Profiles {
     @Step("I send PUT HTTP request for update user profile with invalid height")
     public void sendPutUpdateProfileWithInvalidHeight(){
         SerenityRest.given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI2QGdtYWlsLmNvbSIsImV4cCI6MTcwMTkzNjc1MywiaWQiOjEzLCJyb2xlIjoidXNlciJ9.1g4i0lByTwCoU2heQcKp2fYNgxxopTrl_fhvCGHvBlk")
+                .header("Authorization", tokenLoginUser)
                 .formParams("height", "abcdde")
                 .put(setValidUpdateUser());
     }
 
     @Step("I receive valid message that Invalid Input Update Data")
     public void validateMessageInvalidHeight(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("Invalid Input Update Data")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("invalid input update data")));
     }
 
 
@@ -127,7 +154,7 @@ public class Profiles {
     @Step("I send PUT HTTP request for update user profile with invalid weight")
     public void sendPutUpdateProfileWithInvalidWeight(){
         SerenityRest.given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI2QGdtYWlsLmNvbSIsImV4cCI6MTcwMTkzNjc1MywiaWQiOjEzLCJyb2xlIjoidXNlciJ9.1g4i0lByTwCoU2heQcKp2fYNgxxopTrl_fhvCGHvBlk")
+                .header("Authorization", tokenLoginUser)
                 .formParams("weight", "abcdde")
                 .put(setValidUpdateUser());
     }
@@ -143,7 +170,7 @@ public class Profiles {
     @Step("I send GET HTTP request for get user profile with valid token")
     public void sendValidGetUserProfile(){
         SerenityRest.given()
-                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI2QGdtYWlsLmNvbSIsImV4cCI6MTcwMTkzNjc1MywiaWQiOjEzLCJyb2xlIjoidXNlciJ9.1g4i0lByTwCoU2heQcKp2fYNgxxopTrl_fhvCGHvBlk")
+                .header("Authorization", tokenLoginUser)
                 .get(setValidGetUserProfile());
     }
 

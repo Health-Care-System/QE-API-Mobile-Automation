@@ -3,6 +3,12 @@ Feature: Profiles
   I want to access my profile
   So that I can see and update my profile
 
+#  @LoginFirst
+#  Scenario: Verify send POST request to login first before update profiles
+#    Given I set login user API endpoint before update
+#    When I send POST HTTP request for login with valid request body before update profiles
+#    Then I receive HTTP response status code 200 OK
+#    And I receive valid message that Login Successfull
 
   @UpdateProfile-045
   Scenario: Verify send PUT request to update user with valid full name, email, password, image url, gender, birthdate, blood type, height, and weight
