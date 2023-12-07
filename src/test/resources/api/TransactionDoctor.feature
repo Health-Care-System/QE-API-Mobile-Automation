@@ -99,3 +99,33 @@ Feature: Transaction Doctor
     Given I set get doctor transactions API endpoint with status pending
     When I send POST HTTP request for get doctor transactions with status pending
     Then I receive HTTP response status code 405 Method Not Allowed
+
+
+  @GetTransactionDoctorByID-075
+  Scenario: Verify send GET request to get doctor transaction by valid ID
+    Given I set get doctor transactions by valid ID API endpoint
+    When I send GET HTTP request for get doctor transactions by valid ID
+    Then I receive HTTP response status code 200 OK
+    And I receive valid message that doctor transaction data successfully retrieved
+
+  @GetTransactionDoctorByID-076
+  Scenario: Verify send GET request to get doctor transaction by invalid ID
+    Given I set get doctor transactions by invalid ID API endpoint
+    When I send GET HTTP request for get doctor transactions by invalid ID
+    Then I receive HTTP response status code 400 Bad Request
+    And I receive valid message that invalid transaction id
+
+  @GetTransactionDoctorByID-077
+  Scenario: Verify send GET request to get doctor transaction by non existing ID
+    Given I set get doctor transactions by non exist ID API endpoint
+    When I send GET HTTP request for get doctor transactions by non exist ID
+    Then I receive HTTP response status code 500 Internal Server Error
+    And I receive valid message that failed to retrieve doctor transaction data
+
+  @GetTransactionDoctorByID-078
+  Scenario: Verify send POST request to get doctor transaction by valid ID
+    Given I set get doctor transactions by valid ID API endpoint
+    When I send POST HTTP request for get doctor transactions by valid ID
+    Then I receive HTTP response status code 400 Bad Request
+
+

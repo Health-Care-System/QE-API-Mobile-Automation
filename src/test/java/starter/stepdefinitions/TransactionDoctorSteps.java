@@ -199,9 +199,59 @@ public class TransactionDoctorSteps {
 
 
 
+    //    Scenario: Verify send GET request to get doctor transaction by valid ID
+    @Given("I set get doctor transactions by valid ID API endpoint")
+    public void setValidDocTransByIDEndpoint(){
+        transactionDoctor.setValidGetDocTransByID();
+    }
+
+    @When("I send GET HTTP request for get doctor transactions by valid ID")
+    public void successSendGetDocTransByID(){
+        transactionDoctor.sendGetDocTransByValidID();
+    }
 
 
 
+    //    Scenario: Verify send GET request to get doctor transaction by invalid ID
+    @Given("I set get doctor transactions by invalid ID API endpoint")
+    public void setGetDocTransByInvalidIDEndpoint(){
+        transactionDoctor.setGetDocTransByInvalidID();
+    }
+
+    @When("I send GET HTTP request for get doctor transactions by invalid ID")
+    public void successSendGetDocTransByInvalidID(){
+        transactionDoctor.sendGetDocTransByInvalidID();
+    }
+
+    @And("I receive valid message that invalid transaction id")
+    public void receiveMessageInvalidTransactionID(){
+        transactionDoctor.validateMessageGetDocTransByInvalidID();
+    }
+
+
+
+    //    Scenario: Verify send GET request to get doctor transaction by non existing ID
+    @Given("I set get doctor transactions by non exist ID API endpoint")
+    public void setGetDocTransByNonExistID(){
+        transactionDoctor.setGetDocTransByNonExistID();
+    }
+
+    @When("I send GET HTTP request for get doctor transactions by non exist ID")
+    public void successSendGetDocTransByNonExistID(){
+        transactionDoctor.sendGetDocTransByNonExistID();
+    }
+
+    @And("I receive valid message that failed to retrieve doctor transaction data")
+    public void receiveMessageFailedRetrieveDocTransData(){
+        transactionDoctor.validateMessageGetDocTransByNonExistID();
+    }
+
+
+    //    Scenario: Verify send POST request to get doctor transaction by valid ID
+    @When("I send POST HTTP request for get doctor transactions by valid ID")
+    public void successSendPostToGetDocTransByValidID(){
+        transactionDoctor.sendPostToGetDocTransByID();
+    }
 
 
 }
