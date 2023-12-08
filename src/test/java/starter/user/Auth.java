@@ -46,7 +46,6 @@ public class Auth {
                 .body(requestBody.toString())
                 .post(setRegisterUserEndpoint());
 
-//        emailCounter++;
     }
 
     @Step("I receive HTTP response status code 200 OK")
@@ -210,17 +209,6 @@ public class Auth {
                 .post(setRegisterUserEndpoint());
 
     }
-
-
-
-
-
-//    Validate response body
-//    @Step("I receive valid data for detail user")
-//    public void validateDataDetailUser(){
-//        restAssuredThat(response -> response.body("'data'.'id'", equalTo(2)));
-//        restAssuredThat(response -> response.body("'data'.'first_name'", equalTo("Janet")));
-//    }
 
 
 }

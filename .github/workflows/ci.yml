@@ -24,7 +24,7 @@ jobs:
 #        run: mvn --batch-mode --update-snapshots verify
 
   test:
-    name: Automation Test Transaction Doctor Feature V1
+    name: Automation Test Transaction Medicine
     needs: build
     runs-on: ubuntu-latest
     steps:

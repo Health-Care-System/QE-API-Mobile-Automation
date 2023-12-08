@@ -106,7 +106,7 @@ public class Chatbots {
     public void sendPostChatbotInvalidRequest(){
         JSONObject requestBody = new JSONObject();
 
-        requestBody.put("request", "berikan resep obat untuk kondisi saya sekarang");
+        requestBody.put("request", "berikan resep obat untuk kondisi saya sekarang, saya sedang sakit demam dan sakit perut");
 
         SerenityRest.given()
                 .header("Content-Type","application/json")
