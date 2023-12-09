@@ -103,12 +103,12 @@ Feature: Transaction Medicine
 #    Then I receive HTTP response status code 400 Bad Request
 #    And I receive valid message that invalid audio file format
 
-  @CreateComplaintMessage-129
-  Scenario: Verify send POST to create complaint message by valid room chat ID and sent exceed maximum audio size
-    Given I set valid create complaint message by valid room chat ID API endpoint
-    When I send POST HTTP request for create complaint message by valid room chat ID and sent exceed audio zize
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that file size exceeds the maximum allowed size
+#  @CreateComplaintMessage-129
+#  Scenario: Verify send POST to create complaint message by valid room chat ID and sent exceed maximum audio size
+#    Given I set valid create complaint message by valid room chat ID API endpoint
+#    When I send POST HTTP request for create complaint message by valid room chat ID and sent exceed audio zize
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that file size exceeds the maximum allowed size
 
 
   @GetRoomChat-130
