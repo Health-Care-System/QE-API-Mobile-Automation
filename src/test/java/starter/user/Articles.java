@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Articles {
 
-    protected String url = "https://www.healthify.my.id";
+    protected String url = "https://dev.healthify.my.id";
 
 //    Scenario: Verify send GET request to get all health articles endpoint
     @Step("I set get all health articles API endpoint")

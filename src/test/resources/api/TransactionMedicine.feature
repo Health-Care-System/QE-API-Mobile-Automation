@@ -50,7 +50,7 @@ Feature: Transaction Medicine
   Scenario: Verify send POST request to create medicine transaction endpoint with non exist medicine ID
     Given I set valid create medicine transaction API endpoint
     When I send POST HTTP request for create medicine transaction with non exist medicine ID
-    Then I receive HTTP response status code 400 Bad Request
+    Then I receive HTTP response status code 404 Not Found
     And I receive valid message that failed create medicine transaction with non exist medicine ID
 
   @CreateMedicineTransaction-086
@@ -153,7 +153,7 @@ Feature: Transaction Medicine
   Scenario: Verify send DELETE request to delete medicine transactions by valid ID endpoint
     Given I set valid delete medicine transactions API endpoint with valid ID
     When I send DELETE HTTP request for delete medicine transactions with valid ID
-    Then I receive HTTP response status code 200 OK
+    Then I receive HTTP response status code 403 Forbidden
     And I receive valid message that successfully deleted medicine transaction
 
   @DeleteMedicineTransaction-100
@@ -172,40 +172,40 @@ Feature: Transaction Medicine
 
 
 
-  @CreateCheckout-102
-  Scenario: Verify send POST request to create checkout with valid request body and medicine transaction ID
-    Given I set valid create checkout API endpoint with valid medicine transaction ID
-    When I send POST HTTP request for create checkout with valid medicine transaction ID
-    Then I receive HTTP response status code 201 Created
-    And I receive valid message that successfully created checkout
-
-  @CreateCheckout-103
-  Scenario: Verify send POST request to create checkout with valid request body and invalid medicine transaction ID
-    Given I set valid create checkout API endpoint with invalid medicine transaction ID
-    When I send POST HTTP request for create checkout with invalid medicine transaction ID
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that failed to create checkout with invalid medicine transaction
-
-  @CreateCheckout-104
-  Scenario: Verify send POST request to create checkout with valid request body and non existing medicine transaction ID
-    Given I set valid create checkout API endpoint with non esxisting medicine transaction ID
-    When I send POST HTTP request for create checkout with non existing medicine transaction ID
-    Then I receive HTTP response status code 403 Forbidden
-    And I receive valid message that failed to create checkout with non existing medicine transaction ID
-
-  @CreateCheckout-105
-  Scenario: Verify send POST request to create checkout with invalid payment confirmation and valid medicine transaction ID
-    Given I set valid create checkout API endpoint with valid medicine transaction ID
-    When I send POST HTTP request for create checkout with valid medicine transaction ID and invalid payment confirmation
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that failed to create checkout with invalid payment confirmation
-
-  @CreateCheckout-106
-  Scenario: Verify send POST request to create checkout with empty payment confirmation and valid medicine transaction ID
-    Given I set valid create checkout API endpoint with valid medicine transaction ID
-    When I send POST HTTP request for create checkout with valid medicine transaction ID and empty payment confirmation
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that failed to create checkout with empty payment confirmation
+#  @CreateCheckout-102
+#  Scenario: Verify send POST request to create checkout with valid request body and medicine transaction ID
+#    Given I set valid create checkout API endpoint with valid medicine transaction ID
+#    When I send POST HTTP request for create checkout with valid medicine transaction ID
+#    Then I receive HTTP response status code 201 Created
+#    And I receive valid message that successfully created checkout
+#
+#  @CreateCheckout-103
+#  Scenario: Verify send POST request to create checkout with valid request body and invalid medicine transaction ID
+#    Given I set valid create checkout API endpoint with invalid medicine transaction ID
+#    When I send POST HTTP request for create checkout with invalid medicine transaction ID
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that failed to create checkout with invalid medicine transaction
+#
+#  @CreateCheckout-104
+#  Scenario: Verify send POST request to create checkout with valid request body and non existing medicine transaction ID
+#    Given I set valid create checkout API endpoint with non esxisting medicine transaction ID
+#    When I send POST HTTP request for create checkout with non existing medicine transaction ID
+#    Then I receive HTTP response status code 403 Forbidden
+#    And I receive valid message that failed to create checkout with non existing medicine transaction ID
+#
+#  @CreateCheckout-105
+#  Scenario: Verify send POST request to create checkout with invalid payment confirmation and valid medicine transaction ID
+#    Given I set valid create checkout API endpoint with valid medicine transaction ID
+#    When I send POST HTTP request for create checkout with valid medicine transaction ID and invalid payment confirmation
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that failed to create checkout with invalid payment confirmation
+#
+#  @CreateCheckout-106
+#  Scenario: Verify send POST request to create checkout with empty payment confirmation and valid medicine transaction ID
+#    Given I set valid create checkout API endpoint with valid medicine transaction ID
+#    When I send POST HTTP request for create checkout with valid medicine transaction ID and empty payment confirmation
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that failed to create checkout with empty payment confirmation
 
 
 

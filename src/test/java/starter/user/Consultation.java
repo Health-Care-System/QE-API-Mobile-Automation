@@ -12,13 +12,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Consultation {
 
-    protected String url = "https://www.healthify.my.id";
+    protected String url = "https://dev.healthify.my.id";
 
-    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJkb2N0cmFuc0BnbWFpbC5jb20iLCJleHAiOjE3MDIyODU2MDksImlkIjo3OCwicm9sZSI6InVzZXIifQ.S4SMlxt2akpYKIimSo2DNAjSU7HTgQRLQPcZEbL06vE";
+    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhc2llbmhlYWx0aGlmeUBnbWFpbC5jb20iLCJleHAiOjE3MDMzNzY2ODEsImlkIjoxNzUsInJvbGUiOiJ1c2VyIn0.GYCC7t2SR9yx3og9zZoe_s2TF3DpAGKigCfZfLh_i-s";
 
-    protected String docTransID = "89"; // success id = 86 - 100
+    protected String docTransID = "269"; // success id = 260 - 265
 
-    protected String roomChatID = "51";
+    protected String roomChatID = "95"; // untuk skenario kirim pesan
+
 
 //    Scenario: Verify send POST to create room chat by valid doctor transaction ID
     @Step("I set valid create room chat by valid doctor transaction ID API endpoint")
@@ -148,7 +149,7 @@ public class Consultation {
 
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("message", "Kirim gambar")
+//                .formParams("message", "Kirim gambar")
                 .multiPart("image", imageFile, "image/jpeg")
                 .post(setValidCreateComplaintMessageByValidRoomChatID());
     }
@@ -162,7 +163,6 @@ public class Consultation {
 
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("message", "Kirim gambar")
                 .multiPart("audio", audioFile, "audio/mp3")
                 .post(setValidCreateComplaintMessageByValidRoomChatID());
     }
@@ -217,7 +217,7 @@ public class Consultation {
 
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("message", "Kirim gambar")
+//                .formParams("message", "Kirim gambar")
                 .multiPart("image", imageFile, "file/pdf")
                 .post(setValidCreateComplaintMessageByValidRoomChatID());
     }
@@ -236,7 +236,7 @@ public class Consultation {
 
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("message", "Kirim gambar")
+//                .formParams("message", "Kirim gambar")
                 .multiPart("image", imageFile, "image/jpeg")
                 .post(setValidCreateComplaintMessageByValidRoomChatID());
     }
@@ -255,7 +255,7 @@ public class Consultation {
 
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("message", "Kirim gambar")
+//                .formParams("message", "Kirim gambar")
                 .multiPart("audio", imageFile, "file/pdf")
                 .post(setValidCreateComplaintMessageByValidRoomChatID());
     }
@@ -274,7 +274,7 @@ public class Consultation {
 
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("message", "Kirim gambar")
+//                .formParams("message", "Kirim gambar")
                 .multiPart("audio", audioFile, "audio/mp3")
                 .post(setValidCreateComplaintMessageByValidRoomChatID());
     }

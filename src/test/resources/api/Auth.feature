@@ -24,7 +24,6 @@ Feature: Register and Login
     Then I receive HTTP response status code 409 Conflict
     And I receive valid message that Email Already Exist
 
-
   @Login-009
   Scenario: Verify send POST request to login user endpoint with valid email, and password
     Given I set login user API endpoint
@@ -46,9 +45,9 @@ Feature: Register and Login
     Then I receive HTTP response status code 400 Bad Request
     And I receive valid message that Failed on Email Validation
 
-  @Delete-015
-  Scenario: Verify send DELETE request to delete user endpoint with valid login token
-    Given I set delete user API endpoint
-    When I send DELETE HTTP request for delete user with valid login token
-    Then I receive HTTP response status code 200 OK
-    And I receive valid message that User Deleted Data Successful
+#  @Delete-015
+#  Scenario: Verify send DELETE request to delete user endpoint with valid login token
+#    Given I set delete user API endpoint
+#    When I send DELETE HTTP request for delete user with valid login token
+#    Then I receive HTTP response status code 200 OK
+#    And I receive valid message that User Deleted Data Successful

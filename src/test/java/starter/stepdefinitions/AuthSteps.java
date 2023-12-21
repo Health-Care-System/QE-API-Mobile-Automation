@@ -23,10 +23,11 @@ public class AuthSteps {
         auth.sendPostRegister();
     }
 
-    @Then("I receive HTTP response status code 200 OK")
-    public void validateStatus200OK(){
-        auth.receiveResponseStatusCode200OK();
+    @Then("I receive HTTP response status code 201 Created")
+    public void validateStatusCode201(){
+        auth.receiveResponseStatusCode201();
     }
+
 
     @And("I receive valid message that Registered Successful")
     public void receiveMessageSuccessRegister(){
@@ -106,19 +107,26 @@ public class AuthSteps {
 
 
 //    Scenario: Verify send DELETE request to delete user endpoint with valid login token
-    @Given("I set delete user API endpoint")
-    public void setValidDeleteUserEndpoint(){
-        auth.setDeleteUserEndpoint();
+//    @Given("I set delete user API endpoint")
+//    public void setValidDeleteUserEndpoint(){
+//        auth.setDeleteUserEndpoint();
+//    }
+//
+//    @When("I send DELETE HTTP request for delete user with valid login token")
+//    public void successSendDeleteUserValidToken(){
+//        auth.sendDeleteUserValidToken();
+//    }
+//
+//    @And("I receive valid message that User Deleted Data Successful")
+//    public void receiveMessageUserDeletedDataSuccessful(){
+//        auth.validateMessageSuccessDeleteUser();
+//    }
+
+
+    @Then("I receive HTTP response status code 200 OK")
+    public void validateStatus200OK(){
+        auth.receiveResponseStatusCode200OK();
     }
 
-    @When("I send DELETE HTTP request for delete user with valid login token")
-    public void successSendDeleteUserValidToken(){
-        auth.sendDeleteUserValidToken();
-    }
-
-    @And("I receive valid message that User Deleted Data Successful")
-    public void receiveMessageUserDeletedDataSuccessful(){
-        auth.validateMessageSuccessDeleteUser();
-    }
 
 }

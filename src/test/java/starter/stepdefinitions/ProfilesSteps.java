@@ -13,10 +13,9 @@ public class ProfilesSteps {
     @Steps
     Profiles profiles;
 
-//    @Steps
-//    Auth auth;
-//
-//    //    Login First
+    Auth auth;
+
+    //    Login First
 //
 //    @Given("I set login user API endpoint before update")
 //    public void setValidLoginFirstEndpoint(){

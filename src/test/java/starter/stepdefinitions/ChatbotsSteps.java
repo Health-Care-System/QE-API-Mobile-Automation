@@ -77,8 +77,8 @@ public class ChatbotsSteps {
 
 
 
-    //    Scenario: Verify send GET request to chatbot endpoint with valid request
-    @When("I send GET HTTP request for chat bot with the request is Health Advice")
+    //    Scenario: Verify send DELETE request to chatbot endpoint with valid request
+    @When("I send DELETE HTTP request for chat bot with the request is Health Advice")
     public void successSendGetToChatbot(){
         chatbots.sendGetToChatBotEndpoint();
     }

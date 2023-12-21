@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Medicines {
 
-    protected String url = "https://www.healthify.my.id";
+    protected String url = "https://dev.healthify.my.id";
 
 //    Scenario: Verify send GET request to get all medicines endpoint
     @Step("I set get all medicines API endpoint")
@@ -43,7 +43,7 @@ public class Medicines {
 //    Scenario: Verify send GET request to get medicines by name endpoint with valid name
     @Step("I set get medicine by name API endpoint with valid name")
     public String setValidGetMedicineByName(){
-        return url + "/users/medicines?offset=0&limit=3&name=Bodrex";
+        return url + "/users/medicines?keyword=Panadol&offset=0&limit=3";
     }
 
     @Step("I send GET HTTP request for get medicine by name")
@@ -55,7 +55,7 @@ public class Medicines {
 //    Scenario: Verify send GET request to get medicines by name endpoint with invalid name
     @Step("I set get medicine by name API endpoint with invalid name")
     public String setGetMedicineByInvalidName(){
-        return url + "/users/medicines?offset=0&limit=3&name=12345";
+        return url + "/users/medicines?keyword=1234567890&offset=0&limit=3";
     }
 
     @Step("I send GET HTTP request for get medicine by invalid name")

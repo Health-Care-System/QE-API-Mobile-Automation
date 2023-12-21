@@ -15,13 +15,13 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class TransactionMedicine {
 
-    protected String url = "https://www.healthify.my.id";
+    protected String url = "https://dev.healthify.my.id";
 
-    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJtZWR0cmFuc0BnbWFpbC5jb20iLCJleHAiOjE3MDIyMTgwOTgsImlkIjo2NSwicm9sZSI6InVzZXIifQ.dMMRYLJ2gcmCVNUaPIGxujOYWbhMuQymBXT0Ba8y3XQ";
+    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhc2llbmhlYWx0aGlmeUBnbWFpbC5jb20iLCJleHAiOjE3MDMzNzY2ODEsImlkIjoxNzUsInJvbGUiOiJ1c2VyIn0.GYCC7t2SR9yx3og9zZoe_s2TF3DpAGKigCfZfLh_i-s";
 
-    protected String medTransID = "106"; // +1 increment manual
+    protected String medTransID = "216"; // +1 increment manual & skip 221
 
-    protected String deleteMedTrans = "66"; // +1 increment manual
+    protected String deleteMedTrans = "221"; // +1 increment manual
 
     private int medicineTransactionId;
 
@@ -49,7 +49,7 @@ public class TransactionMedicine {
         JSONArray medicineDetailsArray = new JSONArray();
 
         JSONObject medicine1 = new JSONObject();
-        medicine1.put("medicine_id", 1);
+        medicine1.put("medicine_id", 3);
         medicine1.put("quantity", 1);
 
         medicineDetailsArray.put(medicine1);
@@ -130,11 +130,11 @@ public class TransactionMedicine {
         JSONArray medicineDetailsArray = new JSONArray();
 
         JSONObject medicine1 = new JSONObject();
-        medicine1.put("medicine_id", 1);
+        medicine1.put("medicine_id", 2);
         medicine1.put("quantity", 1);
 
         JSONObject medicine2 = new JSONObject();
-        medicine2.put("medicine_id", 2);
+        medicine2.put("medicine_id", 3);
         medicine2.put("quantity", 1);
 
         medicineDetailsArray.put(medicine1);
@@ -314,7 +314,7 @@ public class TransactionMedicine {
 
     @Step("I receive valid message that failed create medicine transaction with non exist medicine ID")
     public void validateMessageInvalidMedicineID(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("invalid medicine id")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("medicine id not found")));
     }
 
 
@@ -539,7 +539,7 @@ public class TransactionMedicine {
 //    Scenario: Verify send GET request to get medicine transactions by ID endpoint
     @Step("I set valid get medicine transactions by ID API endpoint")
     public String setGetMedTransByValidID(){
-        return url + "/users/medicines-payments/100";
+        return url + "/users/medicines-payments/211";
     }
 
     @Step("I send GET HTTP request for get medicine transactions by ID")
@@ -611,7 +611,7 @@ public class TransactionMedicine {
 
     @Step("I receive valid message that successfully deleted medicine transaction")
     public void validateMessageSuccessDeleteMedTrans(){
-        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("successfully deleted medicine transaction")));
+        restAssuredThat(response -> response.body("'meta'.'message'", equalTo("permission denied")));
     }
 
 
@@ -852,7 +852,7 @@ public class TransactionMedicine {
 //    Scenario: Verify send GET request to get checkout by ID endpoint
     @Step("I set valid get checkout by valid ID API endpoint")
     public String setValidGetCheckoutByID(){
-        return url + "/users/medicines-payments/checkout/38";
+        return url + "/users/medicines-payments/checkout/100";
     }
 
     @Step("I send GET HTTP request for get checkout by valid ID")

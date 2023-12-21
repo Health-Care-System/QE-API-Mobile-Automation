@@ -15,32 +15,10 @@ import static org.hamcrest.Matchers.equalTo;
 public class Profiles {
 //    private static String authToken;
 
-    protected String url = "https://www.healthify.my.id";
+    protected String url = "https://dev.healthify.my.id";
 
-//    Login First
-//    @Step("I set login user API endpoint before update")
-//    public String setValidLoginBeforeUpdate(){
-//        return url = "/users/login";
-//    }
-//
-//    @Step("I send POST HTTP request for login with valid request body before update profiles")
-//    public void sendPostLoginValidBeforeUpdateProfile(){
-//        JSONObject requestBody = new JSONObject();
-//
-//        requestBody.put("email", "user2002@gmail.com");
-//        requestBody.put("password", "a1234567890");
-//
-//        SerenityRest.given()
-//                .header("Content-Type","application/json")
-//                .body(requestBody.toString())
-//                .post(setValidLoginBeforeUpdate());
-//
-//        Response response = SerenityRest.lastResponse();
-//        authToken = response.path("results.token");
-//    }
 
-    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjFAZ21haWwuY29tIiwiZXhwIjoxNzAyMTI1MTk5LCJpZCI6NTMsInJvbGUiOiJ1c2VyIn0.-umhmxymWwrCGLgXJIdSVl95QPrXgJ-iC7rH9GaxURU";
-
+    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhc2llbmhlYWx0aGlmeUBnbWFpbC5jb20iLCJleHAiOjE3MDMzNzY2ODEsImlkIjoxNzUsInJvbGUiOiJ1c2VyIn0.GYCC7t2SR9yx3og9zZoe_s2TF3DpAGKigCfZfLh_i-s";
 
 
 //    Scenario: Verify send PUT request to update user with valid full name, email, password, image url, gender, birthdate, blood type, height, and weight
@@ -57,16 +35,17 @@ public class Profiles {
         String randomEmail = "user" + UUID.randomUUID().toString() + "@gmail.com";
 
         SerenityRest.given()
+//                .header("Authorization", authToken)
                 .header("Authorization", tokenLoginUser)
-                .formParams("fullname", "Hanisah Fildza Annafisah")
-                .formParams("email", randomEmail)
+                .multiPart("fullname", "Hanisah Fildza Annafisah")
+//                .multiPart("email", randomEmail)
                 .formParams("password", "a1234567890")
-                .multiPart("profile_picture", imageFile, "image/jpeg")
-                .formParams("gender", "female")
-                .formParams("birthdate", "1999-09-30")
-                .formParams("blood_type", "A")
-                .formParams("height", 170)
-                .formParams("weight", 50)
+//                .multiPart("profile_picture", imageFile, "image/jpeg")
+                .multiPart("gender", "female")
+                .multiPart("birthdate", "1999-09-30")
+                .multiPart("blood_type", "A")
+                .multiPart("height", 170)
+                .multiPart("weight", 50)
                 .put(setValidUpdateUser());
     }
 
@@ -82,7 +61,7 @@ public class Profiles {
 
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("email", "user5gmail.com")
+                .multiPart("email", "user5gmail.com")
                 .put(setValidUpdateUser());
     }
 
@@ -93,7 +72,7 @@ public class Profiles {
 
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("fullname", "Hanisah Fildza Annafisah Annafi")
+                .multiPart("fullname", "Hanisah Fildza Annafisah Annafi")
                 .put(setValidUpdateUser());
     }
 
@@ -140,7 +119,7 @@ public class Profiles {
     public void sendPutUpdateProfileWithInvalidHeight(){
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("height", "abcdde")
+                .multiPart("height", "abcdde")
                 .put(setValidUpdateUser());
     }
 
@@ -155,7 +134,7 @@ public class Profiles {
     public void sendPutUpdateProfileWithInvalidWeight(){
         SerenityRest.given()
                 .header("Authorization", tokenLoginUser)
-                .formParams("weight", "abcdde")
+                .multiPart("weight", "abcdde")
                 .put(setValidUpdateUser());
     }
 

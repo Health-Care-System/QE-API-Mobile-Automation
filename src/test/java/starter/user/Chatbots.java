@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Chatbots {
 
-    protected String url = "https://www.healthify.my.id";
+    protected String url = "https://dev.healthify.my.id";
 
 
 //    Scenario: Verify send POST request to chatbot endpoint with valid request (Cara Pembayaran Obat)
@@ -106,7 +106,7 @@ public class Chatbots {
     public void sendPostChatbotInvalidRequest(){
         JSONObject requestBody = new JSONObject();
 
-        requestBody.put("request", "berikan resep obat untuk kondisi saya sekarang, saya sedang sakit demam dan sakit perut");
+        requestBody.put("request", "bagaimana cara mengupas durian dengan gigi");
 
         SerenityRest.given()
                 .header("Content-Type","application/json")
@@ -116,7 +116,7 @@ public class Chatbots {
 
 
 //    Scenario: Verify send GET request to chatbot endpoint with valid request
-    @Step("I send GET HTTP request for chat bot with the request is Health Advice")
+    @Step("I send DELETE HTTP request for chat bot with the request is Health Advice")
     public void sendGetToChatBotEndpoint(){
         JSONObject requestBody = new JSONObject();
 
@@ -125,7 +125,7 @@ public class Chatbots {
         SerenityRest.given()
                 .header("Content-Type","application/json")
                 .body(requestBody.toString())
-                .get(setChatBotEndpoint());
+                .delete(setChatBotEndpoint());
     }
 
 }

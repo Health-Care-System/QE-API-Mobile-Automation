@@ -6,11 +6,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
 import starter.user.TransactionDoctor;
+import starter.user.Auth;
 
 public class TransactionDoctorSteps {
 
     @Steps
     TransactionDoctor transactionDoctor;
+
+    Auth auth;
 
     //    Scenario: Verify send POST request to create doctor transaction endpoint with valid doctor ID, payment method, and payment confirmation
     @Given("I set create doctor transaction API endpoint with valid doctor ID")
@@ -23,10 +26,7 @@ public class TransactionDoctorSteps {
         transactionDoctor.sendPostValidCreateDocTransaction();
     }
 
-    @Then("I receive HTTP response status code 201 Created")
-    public void validateStatusCode201(){
-        transactionDoctor.receiveResponseStatusCode201();
-    }
+
 
     @And("I receive valid message that doctor transaction created successful")
     public void receiveMessageDocTransactionCreatedSuccessful(){

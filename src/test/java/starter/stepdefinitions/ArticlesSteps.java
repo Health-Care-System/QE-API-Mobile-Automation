@@ -12,8 +12,6 @@ public class ArticlesSteps {
     @Steps
     Articles articles;
 
-
-
     //    Scenario: Verify send GET request to get all health articles endpoint
     @Given("I set get all health articles API endpoint")
     public void setValidGetAllHealthArticlesEndpoint(){

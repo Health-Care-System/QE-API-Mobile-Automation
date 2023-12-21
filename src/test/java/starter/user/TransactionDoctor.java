@@ -12,15 +12,15 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class TransactionDoctor {
 
-    protected String url = "https://www.healthify.my.id";
+    protected String url = "https://dev.healthify.my.id";
 
-    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjFAZ21haWwuY29tIiwiZXhwIjoxNzAyMTc3MzE0LCJpZCI6NTgsInJvbGUiOiJ1c2VyIn0.5jNuVONwduYEeqovHd43prGyKgFJiyir_YjKJhGWlks";
+    protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhc2llbmhlYWx0aGlmeUBnbWFpbC5jb20iLCJleHAiOjE3MDMzNzY2ODEsImlkIjoxNzUsInJvbGUiOiJ1c2VyIn0.GYCC7t2SR9yx3og9zZoe_s2TF3DpAGKigCfZfLh_i-s";
 
 
 //    Scenario: Verify send POST request to create doctor transaction endpoint with valid doctor ID, payment method, and payment confirmation
     @Step("I set create doctor transaction API endpoint with valid doctor ID")
     public String setValidCreateDocTransaction(){
-        return url + "/users/doctor-payments/1";
+        return url + "/users/doctor-payments/15";
     }
 
     @Step("I send POST HTTP request for create doctor transaction with valid request body")
@@ -36,10 +36,6 @@ public class TransactionDoctor {
                 .post(setValidCreateDocTransaction());
     }
 
-    @Step("I receive HTTP response status code 201 Created")
-    public void receiveResponseStatusCode201(){
-        restAssuredThat(response -> response.statusCode(201));
-    }
 
     @Step("I receive valid message that doctor transaction created successful")
     public void validateMessageSuccessCreateDocTransaction(){
@@ -274,7 +270,7 @@ public class TransactionDoctor {
 //    Scenario: Verify send GET request to get doctor transaction by valid ID
     @Step("I set get doctor transactions by valid ID API endpoint")
     public String setValidGetDocTransByID(){
-        return url + "/users/doctor-payments/20";
+        return url + "/users/doctor-payments/258";
     }
 
     @Step("I send GET HTTP request for get doctor transactions by valid ID")

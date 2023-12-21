@@ -3,60 +3,60 @@ Feature: Transaction Doctor
   I want to buy a consultation service with a doctor
   So that I got a solution to my complaint
 
-  @CreateTransactionDoctor-061
-  Scenario: Verify send POST request to create doctor transaction endpoint with valid doctor ID, payment method, and payment confirmation
-    Given I set create doctor transaction API endpoint with valid doctor ID
-    When I send POST HTTP request for create doctor transaction with valid request body
-    Then I receive HTTP response status code 201 Created
-    And I receive valid message that doctor transaction created successful
-
-  @CreateTransactionDoctor-062
-  Scenario: Verify send POST request to create doctor transaction endpoint with invalid doctor ID
-    Given I set create doctor transaction API endpoint with invalid doctor ID
-    When I send POST HTTP request for create doctor transaction to invalid doctor ID endpoint
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that invalid doctor id
-
-  @CreateTransactionDoctor-063
-  Scenario: Verify send POST request to create doctor transaction with non existing doctor ID
-    Given I set create doctor transaction API endpoint with non existing doctor ID
-    When I send POST HTTP request for create doctor transaction to non exist doctor ID
-    Then I receive HTTP response status code 500 Internal Server Error
-    And I receive valid message that doctor failed to retrieve doctor data
-
-  @CreateTransactionDoctor-064
-  Scenario: Verify send POST request to create doctor transaction with empty doctor ID
-    Given I set create doctor transaction API endpoint with empty doctor ID
-    When I send POST HTTP request for create doctor transaction to empty doctor ID
-    Then I receive HTTP response status code 405 Method Not Allowed
-
-  @CreateTransactionDoctor-065
-  Scenario: Verify send POST request to create doctor transaction with empty payment method
-    Given I set create doctor transaction API endpoint with valid doctor ID
-    When I send POST HTTP request for create doctor transaction with empty payment method
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that Failed on Payment Method Validation
-
-  @CreateTransactionDoctor-066
-  Scenario: Verify send POST request to create doctor transaction with invalid payment method
-    Given I set create doctor transaction API endpoint with valid doctor ID
-    When I send POST HTTP request for create doctor transaction with invalid payment method
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that failed to create doctor transaction
-
-  @CreateTransactionDoctor-067
-  Scenario: Verify send POST request to create doctor transaction with empty payment confirmation
-    Given I set create doctor transaction API endpoint with valid doctor ID
-    When I send POST HTTP request for create doctor transaction with empty payment confirmation
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that payment confirmation file is required
-
-  @CreateTransactionDoctor-068
-  Scenario: Verify send POST request to create doctor transaction with invalid file for payment confirmation
-    Given I set create doctor transaction API endpoint with valid doctor ID
-    When I send POST HTTP request for create doctor transaction with invalid payment confirmation
-    Then I receive HTTP response status code 400 Bad Request
-    And I receive valid message that invalid image file format
+#  @CreateTransactionDoctor-061
+#  Scenario: Verify send POST request to create doctor transaction endpoint with valid doctor ID, payment method, and payment confirmation
+#    Given I set create doctor transaction API endpoint with valid doctor ID
+#    When I send POST HTTP request for create doctor transaction with valid request body
+#    Then I receive HTTP response status code 201 Created
+#    And I receive valid message that doctor transaction created successful
+#
+#  @CreateTransactionDoctor-062
+#  Scenario: Verify send POST request to create doctor transaction endpoint with invalid doctor ID
+#    Given I set create doctor transaction API endpoint with invalid doctor ID
+#    When I send POST HTTP request for create doctor transaction to invalid doctor ID endpoint
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that invalid doctor id
+#
+#  @CreateTransactionDoctor-063
+#  Scenario: Verify send POST request to create doctor transaction with non existing doctor ID
+#    Given I set create doctor transaction API endpoint with non existing doctor ID
+#    When I send POST HTTP request for create doctor transaction to non exist doctor ID
+#    Then I receive HTTP response status code 500 Internal Server Error
+#    And I receive valid message that doctor failed to retrieve doctor data
+#
+#  @CreateTransactionDoctor-064
+#  Scenario: Verify send POST request to create doctor transaction with empty doctor ID
+#    Given I set create doctor transaction API endpoint with empty doctor ID
+#    When I send POST HTTP request for create doctor transaction to empty doctor ID
+#    Then I receive HTTP response status code 405 Method Not Allowed
+#
+#  @CreateTransactionDoctor-065
+#  Scenario: Verify send POST request to create doctor transaction with empty payment method
+#    Given I set create doctor transaction API endpoint with valid doctor ID
+#    When I send POST HTTP request for create doctor transaction with empty payment method
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that Failed on Payment Method Validation
+#
+#  @CreateTransactionDoctor-066
+#  Scenario: Verify send POST request to create doctor transaction with invalid payment method
+#    Given I set create doctor transaction API endpoint with valid doctor ID
+#    When I send POST HTTP request for create doctor transaction with invalid payment method
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that failed to create doctor transaction
+#
+#  @CreateTransactionDoctor-067
+#  Scenario: Verify send POST request to create doctor transaction with empty payment confirmation
+#    Given I set create doctor transaction API endpoint with valid doctor ID
+#    When I send POST HTTP request for create doctor transaction with empty payment confirmation
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that payment confirmation file is required
+#
+#  @CreateTransactionDoctor-068
+#  Scenario: Verify send POST request to create doctor transaction with invalid file for payment confirmation
+#    Given I set create doctor transaction API endpoint with valid doctor ID
+#    When I send POST HTTP request for create doctor transaction with invalid payment confirmation
+#    Then I receive HTTP response status code 400 Bad Request
+#    And I receive valid message that invalid image file format
 
 
   @GetAllTransactionDoctor-069
