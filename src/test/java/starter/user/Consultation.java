@@ -16,9 +16,9 @@ public class Consultation {
 
     protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhc2llbmhlYWx0aGlmeUBnbWFpbC5jb20iLCJleHAiOjE3MDMzNzY2ODEsImlkIjoxNzUsInJvbGUiOiJ1c2VyIn0.GYCC7t2SR9yx3og9zZoe_s2TF3DpAGKigCfZfLh_i-s";
 
-    protected String docTransID = "269"; // success id = 260 - 265
+    protected String docTransID = "270"; // success id = 260 - 265
 
-    protected String roomChatID = "95"; // untuk skenario kirim pesan
+    protected String roomChatID = "98"; // untuk skenario kirim pesan
 
 
 //    Scenario: Verify send POST to create room chat by valid doctor transaction ID

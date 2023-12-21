@@ -19,7 +19,7 @@ public class TransactionMedicine {
 
     protected String tokenLoginUser = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhc2llbmhlYWx0aGlmeUBnbWFpbC5jb20iLCJleHAiOjE3MDMzNzY2ODEsImlkIjoxNzUsInJvbGUiOiJ1c2VyIn0.GYCC7t2SR9yx3og9zZoe_s2TF3DpAGKigCfZfLh_i-s";
 
-    protected String medTransID = "216"; // +1 increment manual & skip 221
+    protected String medTransID = "217"; // +1 increment manual & skip 221
 
     protected String deleteMedTrans = "221"; // +1 increment manual
 
